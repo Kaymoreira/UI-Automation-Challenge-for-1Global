@@ -76,6 +76,19 @@ class HomePage extends BasePage {
     this.visit();
   }
 
+  // Dentro da sua classe HomePage
+  clicarSeletoresMoeda() {
+      // Tenta o clique com um pequeno wait antes se o site for instável
+      cy.wait(1000); 
+      cy.contains('div', 'USD').click({ force: true });
+  }
+
+  validarModalAberto() {
+      // Procure por um texto único que só existe no modal aberto
+      // Ex: "US Dollar - $" ou o botão de fechar (X)
+      cy.contains('US Dollar - $').should('be.visible');
+  }
+
   /**
    * Verify page is loaded
    */
